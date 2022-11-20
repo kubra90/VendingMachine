@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import com.techelevator.models.FeedMoney;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ import java.util.Scanner;
 public class UserInput
 {
     private Scanner scanner = new Scanner(System.in);
+
 
     public String getHomeScreenOption()
     {
@@ -33,7 +36,11 @@ public class UserInput
         }
         else if (option.equals("P"))
         {
+            System.out.println("M) Feed Money");
+            System.out.println("(S) Select Item");
+            System.out.println("(F) Finish Transaction");
             return "purchase";
+
         }
         else if (option.equals("E"))
         {
@@ -44,6 +51,12 @@ public class UserInput
             return "";
         }
 
+    }
+    public String HomeScreenMenu(){
+        System.out.println("M) Feed Money");
+        System.out.println("(S) Select Item");
+        System.out.println("(F) Finish Transaction");
+        return "";
     }
 
     
