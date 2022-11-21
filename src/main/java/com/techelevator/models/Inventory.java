@@ -65,6 +65,27 @@ public class Inventory extends VendingItem {
         return item.getItemPrice();
     }
 
+    public String SoundMessage(String userLocation) {
+        String message = "";
+        for (VendingItem item : Inventory) {
+            if (userLocation.equals(item.getLocation())){
+
+                if (item.getItemType().equals("Drink")) {
+                    message = "Drinky, Drinky, Slurp Slurp!";
+                } else if (item.getItemType().equals("Gum")) {
+                    message = "Chewy, Chewy, Lots O Bubbles!";
+                } else if (item.getItemType().equals("Candy")) {
+                    message = "Sugar, Sugar, so Sweet!";
+                } else if (item.getItemType().equals("Munchy"))
+                    message = "Munchy, Munchy, so Good!";
+                return message;
+            }
+
+        }
+        return message;
+    }
+}
+
     /*
     public BigDecimal remainingMoney(String userLocation) {
         for (VendingItem item : Inventory) {
@@ -78,4 +99,4 @@ public class Inventory extends VendingItem {
     }
 
      */
-    }
+

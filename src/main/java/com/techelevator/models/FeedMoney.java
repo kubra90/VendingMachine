@@ -29,6 +29,9 @@ public class FeedMoney{
 
     }
 
+    public BigDecimal getDecimalCurrentMoney() {
+        return decimalCurrentMoney;
+    }
 
     public double getNickels() {
         return Nickels;
@@ -70,4 +73,15 @@ public class FeedMoney{
     public BigDecimal remainingMoney(){
         return decimalCurrentMoney.subtract(item.getItemPrice());
     }
+
+    /*
+    public String NotEnoughFunds(){
+        BigDecimal newCustomerDeposit = new BigDecimal(customerDeposit);
+        if ((item.getItemPrice().compareTo(newCustomerDeposit)) == 1) {
+            System.out.println("Not Enough Funds! Please put more money into the Vending machine");
+        }
+        return "Not Enough Funds! Please put more money into the Vending machine";
+    }
+
+     */
 }

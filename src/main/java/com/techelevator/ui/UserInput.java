@@ -36,9 +36,6 @@ public class UserInput
         }
         else if (option.equals("P"))
         {
-            System.out.println("M) Feed Money");
-            System.out.println("(S) Select Item");
-            System.out.println("(F) Finish Transaction");
             return "purchase";
 
         }

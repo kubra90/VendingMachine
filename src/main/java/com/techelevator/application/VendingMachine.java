@@ -40,22 +40,24 @@ public class VendingMachine {
 
             // if customer choose "purchase"
             else if (choice.equals("purchase")) {
+                BigDecimal totalMoney = new BigDecimal("0.0");
+                while (true) {
 
-                BigDecimal totalMoney;
-                Scanner input = new Scanner(System.in);
-                String userChoice = input.nextLine();
-
-                if (userChoice.equalsIgnoreCase("M")) {
-                    System.out.println("put your money into Vending machine: ");
-                    double doubleMoney = Double.parseDouble(input.nextLine());
-                    System.out.println("Current Money Provided" + "  $" + money.totalFeedMoney(doubleMoney));
-                    totalMoney = money.totalFeedMoney(doubleMoney);
-                    //moneyList.add(totalMoney);
                     System.out.println("M) Feed Money");
                     System.out.println("(S) Select Item");
                     System.out.println("(F) Finish Transaction");
-                    String choice2 = input.nextLine();
-                    if (choice2.equalsIgnoreCase("S")) {
+                    Scanner input = new Scanner(System.in);
+                    String userChoice = input.nextLine();
+
+                    if (userChoice.equalsIgnoreCase("M")) {
+                        System.out.println("put your money into Vending machine: ");
+                        double doubleMoney = Double.parseDouble(input.nextLine());
+                        BigDecimal newAmount = money.totalFeedMoney(doubleMoney);
+                        System.out.println("Current Money Provided" + "  $" + newAmount);
+                        totalMoney = totalMoney.add(newAmount);
+                        //moneyList.add(totalMoney);
+
+                    } else if (userChoice.equalsIgnoreCase("S")) {
                         //show  the list of all items
                         newList = inventory.readingFile();
                         for (VendingItem eachItem : newList) {
@@ -64,31 +66,29 @@ public class VendingMachine {
                         System.out.println("Which item do you want to buy?");
                         String choiceForLocation = input.nextLine();
                         System.out.print(inventory.selectingItemName(choiceForLocation) + ", ");
-                        System.out.print(inventory.displayItemPrice(choiceForLocation) + ", ");
+                        System.out.println(inventory.displayItemPrice(choiceForLocation) + ", ");
+
                         BigDecimal remaining = totalMoney.subtract(inventory.displayItemPrice(choiceForLocation));
-                        System.out.print(remaining);
-                       for (VendingItem eachItem : newList) {
-                           if((eachItem.getLocation()).equals(choiceForLocation)){
-                                //print sound
-                           }
+                        if (totalMoney.compareTo(inventory.displayItemPrice(choiceForLocation)) ==-1){
+                            System.out.println("Not Enough Funds!");
+                            break;
                         }
+                        System.out.print(remaining + ", ");
+                        System.out.println(inventory.SoundMessage(choiceForLocation));
 
+                    } else if (userChoice.equalsIgnoreCase("F")) {
+                        //stop infinite while loop
+                        break;
                     }
                 }
-
-
-                        // write a code for showing if item available or not and print sound message accordingly.
-                 else if (userChoice.equalsIgnoreCase("F")) {
-                        // select finish transaction
+            }else if (choice.equals("exit")) {
+                        // good bye
+                        break;
                     }
-                }
-                else if (choice.equals("exit")) {
-                    // good bye
-                    break;
-                }
 
 
+                }
             }
         }
-    }
+
 
