@@ -49,12 +49,37 @@ public class UserInput
         }
 
     }
-    public String HomeScreenMenu(){
-        System.out.println("M) Feed Money");
+    public String HomeScreenMenu() {
+        System.out.println("(M) Feed Money");
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
-        return "";
+        System.out.println();
+        System.out.println("Please select an option: ");
+        String selectedOption = scanner.nextLine();
+        String option = selectedOption.trim().toUpperCase();
+
+        if (option.equals("M")) {
+            return "feed money";
+        } else if (option.equals("S")) {
+            return "select";
+        } else if (option.equals("F")) {
+            return "finish transaction";
+        } else {
+            return "";
+        }
     }
 
+    // create method to ask user to feed money!
+    public double askFeedMoney(){
+        System.out.println("put your money into Vending machine: ");
+        double money = Double.parseDouble(scanner.nextLine());
+        return money;
+    }
+
+    public String askCustomerForItem(){
+        System.out.println("Which item do you want to buy?");
+        String choice = scanner.nextLine();
+        return choice;
+    }
     
 }

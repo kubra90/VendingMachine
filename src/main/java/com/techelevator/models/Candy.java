@@ -1,18 +1,9 @@
 package com.techelevator.models;
 
-import java.math.BigDecimal;
-
-public class Candy extends VendingItem implements SoundInterface{
-
-    public Candy(String location, String itemName, BigDecimal itemPrice, String itemType, int quantity) {
-        super(location, itemName, itemPrice, itemType, quantity);
-    }
+public class Candy implements SoundInterface{
 
     @Override
-    public String Sound(){
-        if((super.getItemName()).equals("Candy")){
-            ;
-        }
+    public String Sound(String location) {
         return "Sugar, Sugar, so Sweet!";
     }
 }

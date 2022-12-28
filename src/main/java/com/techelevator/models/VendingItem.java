@@ -34,6 +34,9 @@ public class VendingItem {
         return itemPrice;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public void setItemPrice(BigDecimal itemPrice) {
         this.itemPrice = itemPrice;
@@ -48,24 +51,30 @@ public class VendingItem {
         this.itemType = itemType;
     }
 
-    public VendingItem(String location, String itemName, BigDecimal itemPrice, String itemType, int quantity) {
+    // quantity part can be deleted from here.
+
+    public VendingItem(String location, String itemName, BigDecimal itemPrice, String itemType) {
 
         this.location = location;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.itemType = itemType;
-        this.quantity = quantity;
+        //this.quantity = quantity;
     }
 
     public VendingItem() {
 
     }
 
+    public BigDecimal getPriceByProduct(VendingItem item){
+        return item.getItemPrice();
+    }
+
 
     // string representation of an object
     @Override
     public String toString() {
-        return location + ", " + itemName + ", " + itemPrice + " ," + itemType + ", " + quantity;
+        return location + ", " + itemName + ", " + itemPrice + " ," + itemType + ", ";
     }
 
 
