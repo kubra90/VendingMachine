@@ -81,5 +81,5 @@ public class UserInput
         String choice = scanner.nextLine();
         return choice;
     }
-    
-}
+
+    }

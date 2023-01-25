@@ -27,6 +27,7 @@ public class FileReader {
 
             }
         } catch (FileNotFoundException e) {
+            System.out.println("Error  -- unable to read the file!");
             System.exit(1);
         }
         return inventoryList;

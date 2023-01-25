@@ -5,27 +5,16 @@ import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.*;
 
+public class Inventory {
 
-//should we use inheritance in this part??? without inheritance it works too.
-public class Inventory extends VendingItem {
-    //this class should deal with the checking stocks , substractfromInventory
-    //and it should return current inventory acc to slot location.
-    // /array of strings for the items that are in the vending machine
-    List<VendingItem> Inventory = new ArrayList<>();
-    VendingItem item = new VendingItem();
-    // map to keep track the location and the amount of all item.
-    public TreeMap<String, Integer> inventoryStockList = new TreeMap<String, Integer>();
+    List<VendingItem> InventoryList = new ArrayList<>();
+    public TreeMap<String, Integer> inventoryStockList = new TreeMap<>();
 
     FileReader readerObject = new FileReader();
-
-    //two things importantto check inventory, one readerObject, second is quantity
 
     public Inventory() {
 
     }
-
-
-    //initialize the stock at the beginning
 
     public Map<String, Integer> stocksVendingMachineStart() {
         int initialStock = 6;
@@ -42,65 +31,27 @@ public class Inventory extends VendingItem {
     }
 
 
-
     // get all inventory by reading file
-    public void getAllInventory(){
+    public void getAllInventory() {
         List<VendingItem> newList = readerObject.readingFile();
-        Inventory.addAll(newList);
-
+        InventoryList.addAll(newList);
     }
 
 
-    public void displayInventory() {
-       getAllInventory();
-        for (VendingItem eachItem : Inventory) {
+    public void displayInventory(List<VendingItem> inventoryList) {
+        for (VendingItem eachItem : inventoryList) {
             System.out.println(eachItem + "" + inventoryStockList.get(eachItem.getLocation()));
         }
     }
-
-
-
-
-
-    //return items in the inventory
-/*
-    public Map<String, Integer> checkTheStock() {
-
-        for (VendingItem item : Inventory) {
-            inventoryStockList.put(item.getLocation(), quantity);
-        }
-        return inventoryStockList;
-    }
-
-
-
-
-    public int dispenseFromInventory(String slotLocation) {
-        for (VendingItem item : Inventory) {
-            if (slotLocation.equals(item.getLocation())) {
-                inventoryStockList.put(slotLocation, inventoryStockList.get(slotLocation) - 1);
-                quantity = inventoryStockList.get(slotLocation) - 1;
-            }
-        }
-        return quantity;
-    }
-    /*
-    public ArrayList<VendingItem> updateInventory(){
-        for (VendingItem item : Inventory) {
-
-        }
-    }
-     */
 
     public void subtractFromInventory(String location){
         inventoryStockList.put(location, inventoryStockList.get(location) - 1);
     }
 
 
-    public String selectingItemName(String userLocation) {
-        getAllInventory();
+    public String selectingItemName(String userLocation,List<VendingItem> InventoryList) {
         String name ="";
-        for (VendingItem item : Inventory) {
+        for (VendingItem item : InventoryList) {
             if (userLocation.equals(item.getLocation())) {
                 name = item.getItemName();
             }
@@ -108,10 +59,9 @@ public class Inventory extends VendingItem {
         return name;
     }
 
-    public BigDecimal displayItemPrice(String userLocation) {
-        getAllInventory();
-        BigDecimal price = new BigDecimal(0.0);
-        for (VendingItem item : Inventory) {
+    public BigDecimal displayItemPrice(String userLocation,  List<VendingItem> InventoryList) {
+        BigDecimal price = new BigDecimal("0.00");
+        for (VendingItem item : InventoryList) {
             //if (userLocation.equals(item.getLocation()) && item.getQuantity() >= 1) {
             if (userLocation.equals(item.getLocation())){
                 price = item.getItemPrice();
@@ -121,11 +71,9 @@ public class Inventory extends VendingItem {
         return price;
     }
 
-    //method to get Itemname
-
-    public String getItem(String location) {
+    public String getItem(String location, List<VendingItem> InventoryList) {
         String itemName = "";
-        for (VendingItem item : Inventory) {
+        for (VendingItem item : InventoryList) {
             if (location.equals(item.getLocation())) {
                 itemName = item.getItemType();
             }
@@ -133,18 +81,3 @@ public class Inventory extends VendingItem {
         return itemName;
     }
 }
-
-    /*
-    public BigDecimal remainingMoney(String userLocation) {
-        for (VendingItem item : Inventory) {
-            if (userLocation.equals(item.getLocation()) && item.getQuantity() >= 1) {
-                BigDecimal remainingAmount = customerMoney.totalFeedMoney() - (item.getItemPrice());
-                return remainingAmount;
-            }
-
-        }
-        return remainingAmount;
-    }
-
-     */
-

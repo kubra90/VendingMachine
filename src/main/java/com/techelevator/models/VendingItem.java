@@ -51,7 +51,6 @@ public class VendingItem {
         this.itemType = itemType;
     }
 
-    // quantity part can be deleted from here.
 
     public VendingItem(String location, String itemName, BigDecimal itemPrice, String itemType) {
 
@@ -59,7 +58,6 @@ public class VendingItem {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.itemType = itemType;
-        //this.quantity = quantity;
     }
 
     public VendingItem() {
